@@ -6,13 +6,13 @@ function [ X_f ] = integrateOdom( X_0, d, phi )
 %   the initial pose, the distance travelled and the angle turned
 % 
 %   INPUTS
-%       X_0      initial pose in global coordiantes - [x, y, theta]' 3xN
+%       X_0      initial pose in global coordiantes - [x, y, theta]' 3x1
 %       d        distance travelled  1xN
 %       phi       angle turned in degrees 1xN
 %       
 % 
 %   OUTPUTS
-%       X_f   final pose in global coordinates - [x,y,theta]' 3x1
+%       X_f   final pose in global coordinates - [x,y,theta]' 3xN
 % 
 % 
 %   Cornell University
