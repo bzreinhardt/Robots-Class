@@ -1,0 +1,138 @@
+% This file was created by matlab2tikz v0.4.5 running on MATLAB 8.2.
+% Copyright (c) 2008--2014, Nico Schlömer <nico.schloemer@gmail.com>
+% All rights reserved.
+% 
+% The latest updates can be retrieved from
+%   http://www.mathworks.com/matlabcentral/fileexchange/22022-matlab2tikz
+% where you can also make suggestions and rate matlab2tikz.
+% 
+\begin{tikzpicture}[%
+arrow0/.style={->,color=black!50!green,solid},
+arrow1/.style={->,color=black!50!green,solid},
+arrow2/.style={->,color=black!50!green,solid}
+]
+
+\begin{axis}[%
+width=\figurewidth,
+height=\figureheight,
+scale only axis,
+xmin=0,
+xmax=1.5,
+xlabel={truthPose x (m)},
+ymin=-0.5,
+ymax=1,
+ylabel={truthPose y (m)},
+name=plot1,
+title={Robot Trajectory for $\epsilon = 0.5$},
+legend style={draw=black,fill=white,legend cell align=left}
+]
+\addplot [color=blue,only marks,mark=x,mark options={solid}]
+  table[row sep=crcr]{LidarXYDataRobot2-1.tsv};
+\addlegendentry{Position};
+
+\addplot [arrow0] coordinates{(0.63467524434331,0.0916136331716436) (0.820487063097943,-0.0806446525319951)};
+\addplot [arrow0] coordinates{(0.762253717222646,-0.0266589782164549) (0.995839219786266,-0.124825988838974)};
+\addplot [arrow0] coordinates{(0.839489730223761,-0.0673885445269343) (1.08659124678361,-0.123422369099981)};
+\addplot [arrow0] coordinates{(0.922633621491118,-0.0940604889830475) (1.17571524839183,-0.106252252914093)};
+\addplot [arrow0] coordinates{(1.09639957292635,-0.102431359223988) (1.33833958904196,-0.0271719572569133)};
+\addplot [arrow0] coordinates{(1.18172225862325,-0.0838749969291394) (1.40688034151306,0.0323264948506315)};
+\addplot [arrow0] coordinates{(1.26251568971218,-0.0507582221914596) (1.46402514894262,0.102841539602353)};
+\addplot [arrow0] coordinates{(1.40087216914209,0.054703438835394) (1.53755659642363,0.268048971531014)};
+\addplot [arrow0] coordinates{(1.4542157326592,0.123832040061254) (1.55170073342788,0.357702995093282)};
+\addplot [arrow0] coordinates{(1.5211489751734,0.28440793611455) (1.53260220645861,0.537524060602084)};
+\addplot [arrow0] coordinates{(1.53269737788068,0.370958116189803) (1.49994199402649,0.622207064070238)};
+\addplot [arrow0] coordinates{(1.5290127685892,0.458197573607403) (1.45304771699325,0.699916956194908)};
+\addplot [arrow0] coordinates{(1.4768551322248,0.624162203320069) (1.32266802885241,0.825222607517647)};
+\addplot [arrow0] coordinates{(1.4299727668686,0.697825919590397) (1.24315883279249,0.868996895569007)};
+\addplot [arrow0] coordinates{(1.30170624118821,0.815351983664144) (1.06755182497693,0.912154144545054)};
+\addplot [arrow0] coordinates{(1.22351117234677,0.856091017389421) (0.975993636073448,0.910257595827115)};
+\addplot [arrow0] coordinates{(1.14016827420424,0.882134454285358) (0.88700181137614,0.892415071074657)};
+\addplot [arrow0] coordinates{(0.966344074385591,0.889193130095255) (0.72497917260743,0.812109194206642)};
+\addplot [arrow0] coordinates{(0.881163923592884,0.869993099181744) (0.656889594885964,0.752094946246587)};
+\addplot [arrow0] coordinates{(0.727177075209196,0.789044177807567) (0.556873300443026,0.601439345026387)};
+\addplot [arrow0] coordinates{(0.663066544884888,0.729764002557453) (0.52799680036685,0.515392565331565)};
+\addplot [arrow0] coordinates{(0.610246431852514,0.660234620743752) (0.514529966204042,0.425634307047829)};
+\addplot [arrow0] coordinates{(0.544527466295406,0.499157946725175) (0.534985621563134,0.245962563312352)};
+\addplot [arrow0] coordinates{(0.533632858016776,0.412523041596795) (0.568284270931644,0.16152856244344)};
+\addplot [arrow0] coordinates{(0.537976031690471,0.325313890020895) (0.615763931282861,0.084174943229911)};
+\addlegendentry{Heading};
+
+\end{axis}
+
+\begin{axis}[%
+width=\figurewidth,
+height=\figureheight,
+scale only axis,
+xmin=0,
+xmax=1.5,
+xlabel={truthPose x (m)},
+ymin=-0.5,
+ymax=1,
+ylabel={truthPose y (m)},
+at=(plot1.above north west),
+anchor=below south west,
+title={Robot Trajectory for $\epsilon = 0.2$},
+legend style={draw=black,fill=white,legend cell align=left}
+]
+\addplot [color=blue,only marks,mark=x,mark options={solid}]
+  table[row sep=crcr]{LidarXYDataRobot2-2.tsv};
+\addlegendentry{Position};
+
+\addplot [arrow1] coordinates{(0.591385236255618,0.159747787770158) (0.663700828082902,0.0669081350755726)};
+\addplot [arrow1] coordinates{(0.621079298768718,0.106507126148257) (0.718003210250703,0.0397650755593386)};
+\addplot [arrow1] coordinates{(0.665432541490726,0.0646849399486778) (0.77795980124038,0.0302413375381387)};
+\addplot [arrow1] coordinates{(0.720324209537454,0.0381668295801516) (0.838000175982712,0.0392217489875177)};
+\addplot [arrow1] coordinates{(0.840818116674653,0.0392470107330936) (0.936529913922837,0.107715965751437)};
+\addplot [arrow1] coordinates{(0.895225551825706,0.0667449451783118) (0.965865112195213,0.160866135377885)};
+\addplot [arrow1] coordinates{(0.967556690328277,0.163120018985977) (0.971302064285927,0.280741097486809)};
+\addplot [arrow1] coordinates{(0.978760278667431,0.22304317817169) (0.946898683744117,0.336328590748615)};
+\addplot [arrow1] coordinates{(0.971391753302305,0.283557723798449) (0.906883374928462,0.381982390693281)};
+\addplot [arrow1] coordinates{(0.905338617830798,0.384339327987377) (0.795992945337592,0.427839556041837)};
+\addplot [arrow1] coordinates{(0.852790848322881,0.415243006056702) (0.735420392115557,0.423782440667145)};
+\addplot [arrow1] coordinates{(0.732609767358699,0.423986931193137) (0.631636020236207,0.363546478466304)};
+\addplot [arrow1] coordinates{(0.67614219590196,0.401014800855537) (0.598066562116191,0.31296401242788)};
+\addplot [arrow1] coordinates{(0.596196915219377,0.310855494374763) (0.582877630510034,0.193930977747099)};
+\addplot [arrow1] coordinates{(0.580146732948104,0.252044806166509) (0.602669324737017,0.136539486839252)};
+\addplot [arrow1] coordinates{(0.582558678769048,0.191131031732261) (0.638830626319898,0.0877762357496082)};
+\addplot [arrow1] coordinates{(0.640178148805656,0.0853012385679004) (0.745614684178309,0.0330338209696214)};
+\addplot [arrow1] coordinates{(0.690032384332472,0.0502176156291785) (0.806316386186595,0.0321406455685819)};
+\addlegendentry{Heading};
+
+\end{axis}
+
+\begin{axis}[%
+width=\figurewidth,
+height=\figureheight,
+scale only axis,
+xmin=0,
+xmax=1.5,
+xlabel={truthPose x (m)},
+ymin=-0.5,
+ymax=1,
+ylabel={truthPose y (m)},
+at=(plot1.below south west),
+anchor=above north west,
+title={Robot Trajectory for $\epsilon = 1$},
+legend style={draw=black,fill=white,legend cell align=left}
+]
+\addplot [color=blue,only marks,mark=x,mark options={solid}]
+  table[row sep=crcr]{LidarXYDataRobot2-3.tsv};
+\addlegendentry{Position};
+
+\addplot [arrow2] coordinates{(0.621738291161714,0.105351258737481) (0.964994653700303,-0.127676538332791)};
+\addplot [arrow2] coordinates{(0.703063410258548,0.0438597319753845) (1.06826334237018,-0.153005435630023)};
+\addplot [arrow2] coordinates{(0.882323319984857,-0.0527723565607455) (1.27983300903191,-0.171570217418431)};
+\addplot [arrow2] coordinates{(0.978394706925305,-0.0869084294307544) (1.38593472396519,-0.164613121321124)};
+\addplot [arrow2] coordinates{(1.17941963408864,-0.125237886208616) (1.5942442878422,-0.118353754536232)};
+\addplot [arrow2] coordinates{(1.28231139398118,-0.128830910326971) (1.69422974256006,-0.0793318322072818)};
+\addplot [arrow2] coordinates{(1.48549614994246,-0.104415268970167) (1.87871294709302,0.0279003955193718)};
+\addplot [arrow2] coordinates{(1.58463524431204,-0.0766472290018918) (1.96216363760898,0.0953969423183957)};
+\addplot [arrow2] coordinates{(1.77084725228809,0.00821124450651069) (2.10544802937961,0.253505363067064)};
+\addplot [arrow2] coordinates{(1.8569030629213,0.0647269196096368) (2.16450987413482,0.343123999920652)};
+\addplot [arrow2] coordinates{(2.00862713424042,0.202042900555046) (2.25312045870733,0.537229265017805)};
+\addplot [arrow2] coordinates{(2.07350039495805,0.28198715688383) (2.28223476737992,0.640535405241416)};
+\addplot [arrow2] coordinates{(2.17646208192647,0.458846026083332) (2.3078371134859,0.852378090486481)};
+\addlegendentry{Heading};
+
+\end{axis}
+\end{tikzpicture}%
