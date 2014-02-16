@@ -1,0 +1,30 @@
+function [ pdf ] = gridLocalizationSationary( map, measurements, gridSize )
+% gridLocalizationStationary calculates the pdf of a robot's position 
+% for a discrete gridded map given range measurements
+% 
+%   INPUTS
+%       map       	Nx4 matrix of wall endpoints (x1,y1,x2,y2)
+%       measurements	N rowN,E,S,W (90,0,-90,180)  Nx4
+%       gridSize	Number of rows x Number of columns  	2x1 [n m]
+% 
+%   OUTPUTS
+%       pdf An nxm matrix of probabilities that the robot will be at that
+%       location
+
+xMax = max([map(:,1);map(:,3)]);
+xMin = min([map(:,1);map(:,3)]);
+yMax = max([map(:,2);map(:,4)]);
+yMin = min([map(:,2);map(:,4)]);
+
+if xMin == xMax
+    xMax = xMin + 1;
+end
+if yMin == yMax
+    yMin = yMin + 1;
+    
+end
+xlims = [xMin, xMax];
+ylims = [xMin, xMax];
+
+end
+
