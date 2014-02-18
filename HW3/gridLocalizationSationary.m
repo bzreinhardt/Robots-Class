@@ -10,6 +10,13 @@ function [ pdf ] = gridLocalizationSationary( map, measurements, gridSize )
 %   OUTPUTS
 %       pdf An nxm matrix of probabilities that the robot will be at that
 %       location
+%initialize the map
+[ pdf0,X,Y ] = makeGridMap(map, gridSize);
+% for each measurement, update the map
+pdf = pdf0;
+for i = 1:length(measurements(:,1))
+    pdf = discreteLocationUpdate(pdf,map,X,Y,measurements(i,1));
+end
 
 %algorithm
 %for each nonzero cell, find the probability of the given NSEW measurements

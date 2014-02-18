@@ -1,4 +1,4 @@
-function [ pdf ] = gridLocalizationSationary( map, measurements, gridSize )
+function [ pdf ] = gridLocalizationStationary( map, measurements, gridSize )
 % gridLocalizationStationary calculates the pdf of a robot's position 
 % for a discrete gridded map given range measurements
 % 
@@ -15,7 +15,7 @@ function [ pdf ] = gridLocalizationSationary( map, measurements, gridSize )
 % for each measurement, update the map
 pdf = pdf0;
 for i = 1:length(measurements(:,1))
-    pdf = discreteLocationUpdate(pdf,map,X,Y,measurements(i,1));
+    pdf = discreteLocationUpdate(pdf,map,X,Y,measurements(i,:));
 end
 
 %algorithm
