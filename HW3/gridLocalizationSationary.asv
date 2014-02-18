@@ -11,20 +11,18 @@ function [ pdf ] = gridLocalizationSationary( map, measurements, gridSize )
 %       pdf An nxm matrix of probabilities that the robot will be at that
 %       location
 
-xMax = max([map(:,1);map(:,3)]);
-xMin = min([map(:,1);map(:,3)]);
-yMax = max([map(:,2);map(:,4)]);
-yMin = min([map(:,2);map(:,4)]);
+%algorithm
+%for each nonzero cell, find the probability of the given NSEW measurements
+% and multiply by that cell's current probability
 
-if xMin == xMax
-    xMax = xMin + 1;
-end
-if yMin == yMax
-    yMin = yMin + 1;
-    
-end
-xlims = [xMin, xMax];
-ylims = [xMin, xMax];
+%f(x,u,sigma) = 1/(sqrt(2*pi)*sigma) * exp(-(x-mu)^2/(2*sigma^2))
+%here the mean should be the measurement given perfect sensors
+
+%how to deal with the gridding in terms of the sensor distance. for now
+%assume the mean is from the middle of the grid tile. 
+
+%normalize
 
 end
+
 

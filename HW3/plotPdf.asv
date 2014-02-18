@@ -7,29 +7,15 @@ function plotPdf(X,Y,pdf, walls)
 dx = abs(X(1,2) - X(1,1)); dy = abs(Y(end-1,1) - Y(end,1));
 [Xmid,Ymid] = calcCenters(X,Y);
 [n,m] = size(X);
-
-
 %draw the grid
 for i = 1:n
     for j = 1:m
-        h = rectangle('Position',[X(i,j),Y(i,j),dx,dy]);
-        if pdf(i,j) == 0
-            set(h,'FaceColor','k');
-        else 
-            %got the following code from stackexchange
-            f = pdf(i,j); % your float
-            cm = colormap; % returns the current color map
-            colorID = max(1, sum(f > [0:1/length(cm(:,1)):1])); 
-            myColor = cm(colorID, :); % returns your color
-            set(h,'FaceColor',myColor);
-        end
-        
+        rectangle('Position',[X(i,j),Y(i,j),dx,dy]);
     end
 end
 for k = 1:length(walls(:,1))
-    line([walls(k,1) walls(k,3)],[walls(k,2) walls(k,4)],'Color','r');
+    line([walls(1) walls(3)],[walls(2) walls(4)],'co
 end
-
 %contour(Xmid,Ymid,pdf);
 %draw the grid
 %draw the walls
