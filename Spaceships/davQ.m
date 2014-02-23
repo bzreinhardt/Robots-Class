@@ -1,0 +1,44 @@
+function [A_est, q_est, axis_est, phi_est] = davQ(meas_v, N_v, a)
+%davQ estimates the rotation vector between interial and body coordinates
+%using the Davenport Q method
+%Inputs 
+%   meas_v - unit vectors measuremd in the body frame 3xN
+%   N_v - equivalent unit vectors known in the inertial frame 3xN
+%   a - weighting factor equal to sigma^(-2) for each measurement 1xN or Nx1 
+%Ouputs
+%   A_est - estimated rotation matrix B_A_N
+%   q_est - estimated quaternion corresponding to the rotation to body frame
+%   axis_est - estimated axis of rotation
+%   phi_est - estimated angle of rotation
+
+N = length(a);
+B = zeros(3,3);
+%calculate B
+for i = 1:N
+    B = B + a(i)*meas_v(:,i)*N_v(:,i)';
+end
+%find z - sum(a(i)*cross(meas_v(:,i),N_v(:,i)) 
+z = [B(2,3) - B(3,2); B(3,1) - B(1,3); B(1,2) - B(2,1)];
+S = B + B';
+
+K = [S-eye(3)*trace(B) z; z' trace(B)];
+%q_opt is the eigenvector of K corresponding to the maximum eigenvalue
+[Q, lambda] = eig(K);
+%got max finding code here: http://www.mathworks.com/matlabcentral/answers/47428-to-find-the-maximum-value-in-a-matrix
+[maxValue, linearIndexesOfMaxes] = max(lambda(:));
+[rowsOfMaxes, colsOfMaxes] = find(lambda == maxValue);
+q_est = Q(:,colsOfMaxes);
+%make sure last element of quaternion is positive for comparison
+if q_est(4) < 0
+    q_est(4) = -1*q_est(4);
+end
+
+%normalize q
+q_est = q_est/(q_est'*q_est)^.5;
+
+q = q_est(1:3);
+A_est = (q_est(4)^2-norm(q)^2)*eye(3) + 2*q*q' - 2*q_est(4)*crs(q);
+phi_est = 2*acos(q_est(4)); 
+axis_est = q_est(1:3)/(sin(phi_est/2));
+
+end

@@ -1,0 +1,65 @@
+function [A_est, q_est, axis_est, phi_est] = naivePseudoInv(meas_v, N_v)
+% naivePseudoInv estimates the rotation vector between interial and body coordinates
+%using the naive pseudoinverse method
+%Inputs 
+%   meas_v - unit vectors measuremd in the body frame 3xN
+%   N_v - equivalent unit vectors known in the inertial frame 3xN
+
+%Ouputs
+%   A_est - estimated rotation matrix B_A_N
+%   q_est - estimated quaternion corresponding to the rotation to body frame
+%   axis_est - estimated axis of rotation
+%   phi_est - estimated angle of rotation
+N = length(N_v(1,:));
+%meas_v(:,i) = V(i)*a, where a = [a11 a12 a13 a21 a22 a23 a31 a32 a33]'
+V = zeros(3*N,9);
+meas_v_long = zeros(3*N,1);
+%estimate unnormalized A
+for i = 1:N
+   V(3*i-2,1:3) = N_v(:,i)';
+   V(3*i-1,4:6) = N_v(:,i)';
+   V(3*i  ,7:9) = N_v(:,i)';
+   meas_v_long(3*i-2:3*i) = meas_v(:,i);
+end
+a = pinv(V)*meas_v_long;
+
+A = [[a(1) a(2) a(3)]; ...
+    [a(4) a(5) a(6)];...
+    [a(7) a(8) a(9)]];
+
+%normalize A by converting to a quaternion and then convert back to
+%rotation matrix
+
+%convert rotation matrix to quaternion/euler parameters
+
+q4 = 0.5*(1+A(1,1) + A(2,2) + A(3,3))^.5;
+if ~isreal(q4)
+    A = -1*A;
+    q4 = 0.5*(1+A(1,1) + A(2,2) + A(3,3))^.5;
+end
+
+q1 = (A(3,2)-A(2,3))/(4*q4);
+q2 = (A(1,3)-A(3,1))/(4*q4);
+q3 = (A(2,1)-A(1,2))/(4*q4);
+
+
+%normalize quaternion
+q_est = [q1;q2;q3;q4];
+
+if ~isreal(q_est)
+    dummyvar = 'debug!';
+end
+%normalize q
+q_est = q_est/(q_est'*q_est)^.5;
+%make sure last element of quaternion is positive for comparison
+if q_est(4) < 0
+    q_est(4) = -1*q_est(4);
+end
+%convert normalized quaternion back to a rotation matrix 
+q = q_est(1:3);
+A_est = (q_est(4)^2-norm(q)^2)*eye(3) + 2*q*q' - 2*q_est(4)*crs(q);
+%get axis-angle from the quaternion
+phi_est = 2*acos(q_est(4)); 
+axis_est = q_est(1:3)/(sin(phi_est/2));
+
+end
